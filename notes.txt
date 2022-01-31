@@ -1,0 +1,10 @@
+
+
+CSS Framework: Tailwind
+- documentation link: https://tailwindui.com/documentation#using-html-and-your-own-js 
+
+User Story:
+- As a marvel movie fan, I want to search for movies produced by marvel
+    - I want the response of my movie search to return => movie title, release date, movie cover photo and trailer/comments or reviews
+- I want to use the IMDb && Marvel APIs to dynamically present data from my user's search
+
