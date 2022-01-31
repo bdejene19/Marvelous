@@ -48,15 +48,16 @@ Use this [project presentation template](https://docs.google.com/presentation/d/
 
 * Links to the deployed application and the GitHub repository
 
-## Grading Requirements
 
-This project is graded based on the following criteria:
-
-### Technical Acceptance Criteria: 25%
+### Technical Acceptance Criteria:
 
 * Satisfies the following code requirements:
 
   * Application uses at least two [server-side APIs](https://coding-boot-camp.github.io/full-stack/apis/api-resources)
+  Public marvel api key: f08526e57c077029c918cf7ce36d00c7
+  private marvel api key:
+  57131c64fb96451fbc31edea1480c701132149fe
+
 
   * Application uses client-side storage to store persistent data.
 
@@ -66,21 +67,21 @@ This project is graded based on the following criteria:
 
   * Application is interactive (accepts and responds to user input)
 
-### Concept 10%
+### Concept
 
-* Application should be a unique and novel idea.
+* Application should be a unique and novel idea. (   )
 
 * Your group should clearly and concisely articulate your project idea.
 
-### Deployment: 20%
+### Deployment:
 
 * Application deployed at live URL and loads with no errors.
 
 * Application GitHub URL submitted.
 
-### Repository Quality: 10%
+### Repository Quality:
 
-* Repository has a unique name.
+* Repository has a unique name. MarvelousMoviesIndex
 
 * Repository follows best practices for file structure and naming conventions.
 
@@ -90,7 +91,7 @@ This project is graded based on the following criteria:
 
 * Repository contains a quality README file with description, screenshot, and link to deployed application.
 
-### Application Quality: 15%
+### Application Quality:
 
 * Application user experience is intuitive and easy to navigate.
 
@@ -98,7 +99,7 @@ This project is graded based on the following criteria:
 
 * Application is responsive.
 
-### Presentation 10%
+### Presentation
 
 * Your group should present using Powerpoint or a similar presentation software.
 
@@ -106,17 +107,15 @@ This project is graded based on the following criteria:
 
 * Your presentation should follow the [Project Presentation Template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing).
 
-### Collaboration 10%
+### Collaboration 
 
 * There are no major disparities in the number of GitHub contributions between group members.
 
-## How to Submit Your Interactive Front-End Project
-
 **Each member of your group** is required to submit the following for review:
 
-* The URL of the deployed application.
+* The URL of the deployed application. ()
 
-* The URL of the GitHub repository, with a unique name and a README describing the project.
+* The URL of the GitHub repository, with a unique name and a README describing the project. (https://github.com/bdejene19/MarvelousMoviesIndex)
 
 ---
 © 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
