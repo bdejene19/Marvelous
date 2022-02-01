@@ -3,8 +3,38 @@
 CSS Framework: Tailwind
 - documentation link: https://tailwindui.com/documentation#using-html-and-your-own-js 
 
-User Story:
-- As a marvel movie fan, I want to search for movies produced by marvel
-    - I want the response of my movie search to return => movie title, release date, movie cover photo and trailer/comments or reviews
-- I want to use the IMDb && Marvel APIs to dynamically present data from my user's search
+Project Description and Plan
+- Project Name: Marvelous Movies 
+- Identify user story
+    - User Story:
+    - As a marvel movie fan, I want to search for movies produced by marvel
+        - I want the response of my movie search to return => movie title, release date, movie cover photo and trailer/comments or reviews
+    - I want to use the IMDb && Marvel APIs to dynamically present data from my search
+- APIs chosen:
+    - marvel
+    - imdb 
+- Application wireframe (via figma): https://www.figma.com/file/vIC0jRd7P5a9yVfAxThxUj/Untitled?node-id=2%3A24  
+- task breakdown: a) HTML and CSS skeleton b) JS interactivity
+
+Wireframe link: https://www.figma.com/file/vIC0jRd7P5a9yVfAxThxUj/Untitled?node-id=2%3A24 
+
+Rough breakdown (Tuesday, Feb 1st 2022)
+- Finish Homepage by today => styling, any api requests, and page navigation
+- begin second page (search results page);
+- Begin pseudo code for JS interactivity
+
+
+From Wednesday:
+- first and second page should be done. 
+- Last page to handle specific movie display should be progress 
+- Begin putting together presentation on powerpoint
+
+
+Thursday: 
+- Debug
+- Test
+- Finalize readME.
+- Presentation run through
+
+Friday: Demo Day
 
