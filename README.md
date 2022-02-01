@@ -12,15 +12,15 @@ Finally, a project requires a presentation, because you’re trying to convince 
 
 You and your group will use everything you’ve learned over the past six units to create a real-world front-end application that you’ll be able to showcase to potential employers. The user story and acceptance criteria will depend on the project that you create, but your project must fulfil the following requirements:
 
-* Use a CSS framework other than Bootstrap.
+* Use a CSS framework other than Bootstrap. => using Tailwind
 
 * Be deployed to GitHub Pages.
 
-* Be interactive (i.e., accept and respond to user input).
+* Be interactive (i.e., accept and respond to user input). => come back
 
-* Use at least two [server-side APIs](https://coding-boot-camp.github.io/full-stack/apis/api-resources).
+* Use at least two [server-side APIs](https://coding-boot-camp.github.io/full-stack/apis/api-resources). ==> api's chosen: marvel & youtube api
 
-* Does not use alerts, confirms, or prompts (use modals).
+* Does not use alerts, confirms, or prompts (use modals). => can use jQuery for modals (if necessary);
 
 * Use client-side storage to store persistent data.
 
