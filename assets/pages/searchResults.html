@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page2</title>
+
+    <!-- link tailwind CSS to our HTML -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href='../css/searchpagestyles.css' rel='stylesheet'/>
+    <style>
+       
+        </style>
+</head>
+<body class="">
+    <!-- my nav bar with search input bar, content is in a flex row -->
+    <header class="bg-blue-200 p-3 flex align">
+        <nav class="flex col-gap-10 items-baseline">
+            <div class="align-text-bottom ">
+                my icon
+            </div>
+            <input type='text' placeholder="Spider-Man: Far from Home" class="p-2 rounded"/> 
+        </nav>
+    </header>
+
+
+    <main>
+        <section class=" p-5 pl-10 col-gap-3 border-solid border-b-2 border-blue-300">
+            <!-- my legend for movies, tv-shows and ___ icons -->
+            <div class='flex flex-wrap justify-center text-center w-64 '>
+                <div class="tooltip flex-grow">🎬
+                    <span class="tooltiptext">Movie</span>
+                </div>
+                <div class="tooltip flex-grow">📺
+                    <span class="tooltiptext">TV Show</span>
+                </div>
+                <div class="tooltip flex-grow">🎬
+                    <span class="tooltiptext">Movie</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- where the api search results would go -->
+        <section class='' id='search-results'>
+
+        </section>
+    </main>
+
+    <script src='../js/script.js'></script>
+</body>
+</html>
