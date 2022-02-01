@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- Add tailwind link -->
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Universal Movies</title>
+</head>
+<header class="bg-blue-200 p-3 fles align">
+  <div class="align-text-bottom">
+    <h1 style="color: red; font-weight: 600;">Uni<span class="highlight">VER</span>sal movies</h1>
+    <input type="text" class="form-control" placeholder="Search..." />
+    <button type="submit" class="btn" id="search">Search for movie</button>
+    <div id="movies_search"></div>
+    <!-- List of movies -->
+    <div id="movies_container"></div>
+  </div>
+</header>
+<script src="assets/js/script.js"></script>
+</body>
+
+</html>
