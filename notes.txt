@@ -36,5 +36,5 @@ Thursday:
 - Finalize readME.
 - Presentation run through
 
-Friday: Demo Day
+Friday: Demo Day:
 
