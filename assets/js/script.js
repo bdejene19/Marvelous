@@ -55,7 +55,6 @@ const openModal = async (event) => {
     let movieLength = 0;
     let movieOverview = '';
     let release_date = '';
-    let videoSrc = '';
     let cardPlaceHolders = $(event.target).parents('article');
     let currentCard = cardPlaceHolders[0];
     let cardDataSet = currentCard.dataset;
