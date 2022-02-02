@@ -71,9 +71,9 @@ footer p{
     align-content: flex-start;
     width: max-content;
     overflow: hidden;
-    padding: 3em;
+    padding: 3em 1em;
     row-gap: 1em;
-    column-gap: 1em;;
+    column-gap: 3em;;
     /* border: solid pink 3px; */
 }
 main section {
@@ -89,6 +89,7 @@ main section {
 .display-card {
     width: 10vw;
     font-weight: 600;
+    cursor: pointer;
 
 }
 
