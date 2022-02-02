@@ -49,7 +49,7 @@ const createRowContent = (rowName, contentArray) => {
    })
    return contentArray;
 }
-
+ g
 const openModal = async (event) => {
     let name = '';
     let movieLength = 0;
