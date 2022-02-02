@@ -60,6 +60,7 @@ const openModal = async (event) => {
     let currentCard = cardPlaceHolders[0];
     let cardDataSet = currentCard.dataset;
 
+
     name = cardDataSet.name;
     let res = await getFromIMDbApi(name);
     let trailerId = res.results[0].id;
