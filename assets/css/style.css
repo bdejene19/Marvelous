@@ -97,7 +97,12 @@ main section {
     border-radius: 10px;
     height: 30vh;
 }
-
+/* Adding hover */
+.display-card:hover{
+    margin-left: 0 40px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
 .display-card span {
     border-radius: 100%;
     padding: 1em;
