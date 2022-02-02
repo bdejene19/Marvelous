@@ -170,7 +170,7 @@ const getSearchResults = () => {
 
     let userSearch = $('nav').children('input').val();
 
-    let validSearchReponses = await getFromIMDbApi(userSearch);
+    // let validSearchReponses = await getFromIMDbApi(userSearch);
 
     
     window.location = 'assets/pages/searchResults.html';
