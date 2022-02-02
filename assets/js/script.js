@@ -25,51 +25,81 @@ async function getPopularFromTmdbApi() {
 const generatePopularMovies = async () => {
     // me getting popular data from tmdb api
    let myPopular = await getPopularFromTmdbApi();
-
-
-   /**
-    * needed attributes:
-    * .backdrop_path OR .poster_path
-    * realse_date
-    * original_title
-    * vote_average
-    * overview
-    */
-    // iterate through api array response 
    createRowContent('#popular', myPopular)
 }
 
 const createRowContent = (rowName, contentArray) => {
 
     // creating variables for future use
-   let backdrop = '';
-   let movieName = '';
-   let movieDescription = '';
-   let releaseDate = '';
-   let voteScore = 0;
-
+    let backdrop = '';
+    let movieName = '';
+    let movieDescription = '';
+    let releaseDate = '';
+    let voteScore = 0;
     contentArray.forEach(movie => {
         // set variables to pass into function, to generate html card elements
-       backdrop = movie.poster_path;
-       movieName = movie.original_title;
-       releaseDate = movie.release_date;
-       movieDescription = movie.overview;
-       voteScore = movie.vote_average;
+        backdrop = movie.poster_path;
+        movieName = movie.original_title;
+        releaseDate = movie.release_date;
+        movieDescription = movie.overview;
+        voteScore = movie.vote_average;
 
-       createMovieCard(rowName, movieName, releaseDate, backdrop, voteScore, movieDescription);
+        
+        createMovieCard(rowName, movieName, releaseDate, backdrop, voteScore, movieDescription);
    })
    return contentArray;
 }
 
+const openModal = async (event) => {
+    let name = '';
+    let movieLength = 0;
+    let movieOverview = '';
+    let release_date = '';
+    let videoSrc = '';
+    let cardPlaceHolders = $(event.target).parents('article');
+    let currentCard = cardPlaceHolders[0];
+    let cardDataSet = currentCard.dataset;
+
+
+    name = cardDataSet.name;
+    let res = await getFromIMDbApi(name);
+    let trailerId = res.results[0].id;
+
+    let trailerSrc = await getVideoTrailerById(trailerId)
+    $('#modal-trailer').attr('src', trailerSrc);
+
+    // console.log('name generated from imdb request: ', res);
+    movieOverview = cardDataSet.description
+    release_date = cardDataSet.release_date
+    $('#modal-name').text(name);
+    $('#modal-release').text(`Release: ${release_date}`)
+    $('#modal-overview').text(`Description: \n${movieOverview}`);
+
+    $('#modal-content').dialog({
+        width: '60vw',
+    });
+}
+
+let rows = $('.display-row');
+rows.on('click', '.display-card', openModal)
+
+
 const generateTopRated = async () => {
     let myRes = await getTopRated();
-    console.log(myRes.results);
     createRowContent('#top-rated', myRes.results);
-    console.log(document.getElementById('top-rated').children);
+    // console.log(document.getElementById('top-rated').children);
 }
 const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overview) => {
     let cardContainer = document.createElement('article');
     cardContainer.setAttribute('class', 'display-card');
+    cardContainer.setAttribute('id', '');
+
+    cardContainer.setAttribute('data-name', name);
+    cardContainer.setAttribute('data-release_date', releaseDate);
+    cardContainer.setAttribute('data-cover-photo', coverPhoto);
+    cardContainer.setAttribute('data-vote-score', vote_score);
+    cardContainer.setAttribute('data-description', overview);
+
 
 
     // movie poster photo
@@ -113,12 +143,10 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
  * 
  * @param {string} itemId Id value of item searched
  */
-function getVideoTrailerById(itemId) {
-    let apiRes= fetch(`https://imdb-api.com/en/API/Trailer/${imdbKey}/${itemId}`)
-    .then(response => response.json())
-    .then(res => res);
-
-
+async function getVideoTrailerById(itemId) {
+    let apiRes = await (await fetch(`https://imdb-api.com/en/API/Trailer/${imdbKey}/${itemId}`)).json();
+    console.log('trailer api request: ', apiRes.linkEmbed);
+    return apiRes.linkEmbed
 }
 
 const getTopRated = async () => { 
@@ -126,8 +154,9 @@ const getTopRated = async () => {
     return res
 }
 async function test() {
-    let res =  await generatePopularMovies();
-    let content2 = await generateTopRated();
+    generatePopularMovies();
+    generateTopRated();
+  
     // console.log(res);
 }
 
