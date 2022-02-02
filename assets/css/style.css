@@ -62,7 +62,10 @@ footer{
 footer p{
     margin-right: 10%;
 }
+main {
+        padding: 3em 1em;
 
+}
 /* beginning of main content section => showing popular movies etc.  */
 .display-row {
     display: flex;
@@ -70,17 +73,20 @@ footer p{
     align-items: flex-start;
     align-content: flex-start;
     width: max-content;
-    overflow: hidden;
-    padding: 3em 1em;
     row-gap: 1em;
+    overflow: hidden;
+
     column-gap: 3em;;
     /* border: solid pink 3px; */
 }
 main section {
-    overflow: hidden;
     overflow-x: scroll;
+
 }
-.display-row h2 {
+
+section article {
+}
+h2 {
     flex: 1 1 100%;
     text-align: left;
     font-size: 2.5rem;

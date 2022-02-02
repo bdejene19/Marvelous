@@ -25,17 +25,6 @@ async function getPopularFromTmdbApi() {
 const generatePopularMovies = async () => {
     // me getting popular data from tmdb api
    let myPopular = await getPopularFromTmdbApi();
-
-
-   /**
-    * needed attributes:
-    * .backdrop_path OR .poster_path
-    * realse_date
-    * original_title
-    * vote_average
-    * overview
-    */
-    // iterate through api array response 
    createRowContent('#popular', myPopular)
 }
 
@@ -61,15 +50,48 @@ const createRowContent = (rowName, contentArray) => {
    return contentArray;
 }
 
+const openModal = (event) => {
+    let name = '';
+    let movieLength = 0;
+    let movieGenre = '';
+    let release_date = '';
+    let cardPlaceHolders = $(event.target).parents('article');
+    let currentCard = cardPlaceHolders[0];
+
+    let cardDataSet = currentCard.dataset;
+    name = cardDataSet.name;
+    release_date = cardDataSet.release_date
+    console.log('my name: ', name)
+    
+    
+    $('#modal-name').text(name);
+    $('#modal-release').text(release_date)
+    // $('modal-name').text()
+    $('#modal-content').dialog({
+        width: '60vw',
+    });
+}
+
+let rows = $('.display-row');
+rows.on('click', '.display-card', openModal)
+
+
+
 const generateTopRated = async () => {
     let myRes = await getTopRated();
     console.log(myRes.results);
     createRowContent('#top-rated', myRes.results);
-    console.log(document.getElementById('top-rated').children);
+    // console.log(document.getElementById('top-rated').children);
 }
 const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overview) => {
     let cardContainer = document.createElement('article');
     cardContainer.setAttribute('class', 'display-card');
+    cardContainer.setAttribute('data-name', name);
+    cardContainer.setAttribute('data-release_date', releaseDate);
+    cardContainer.setAttribute('data-cover-photo', coverPhoto);
+    cardContainer.setAttribute('data-vote-score', vote_score);
+    cardContainer.setAttribute('data-description', overview);
+
 
 
     // movie poster photo
