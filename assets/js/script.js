@@ -164,6 +164,7 @@ test();
 
 
 // add event listener for search btn
+
 let searchBtn = $('#search');
 
 const getSearchResults = () => {
