@@ -4,8 +4,10 @@
     scroll-behavior: smooth;
 }
 
-body {
+* {
+    padding: 0;
     margin: 0;
+    box-sizing:  border-box;
 }
 
 .highlight{
@@ -59,4 +61,48 @@ footer{
 }
 footer p{
     margin-right: 10%;
+}
+
+/* beginning of main content section => showing popular movies etc.  */
+.display-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: max-content;
+    overflow: hidden;
+    padding: 3em;
+    row-gap: 1em;
+    column-gap: 1em;;
+    /* border: solid pink 3px; */
+}
+main section {
+    overflow: hidden;
+    overflow-x: scroll;
+}
+.display-row h2 {
+    flex: 1 1 100%;
+    text-align: left;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+.display-card {
+    width: 10vw;
+    font-weight: 600;
+
+}
+
+.display-card img {
+    border-radius: 10px;
+    height: 30vh;
+}
+
+.display-card span {
+    border-radius: 100%;
+    padding: 1em;
+    background-color: black;
+}
+
+.display-card h3{
+    padding-top: 1em;
 }
