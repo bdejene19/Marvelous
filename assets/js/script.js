@@ -26,12 +26,6 @@ const generatePopularMovies = async () => {
     // me getting popular data from tmdb api
    let myPopular = await getPopularFromTmdbApi();
 
-    // creating variables for future use
-   let backdrop = '';
-   let movieName = '';
-   let movieDescription = '';
-   let releaseDate = '';
-   let voteScore = 0;
 
    /**
     * needed attributes:
@@ -42,7 +36,19 @@ const generatePopularMovies = async () => {
     * overview
     */
     // iterate through api array response 
-   myPopular.forEach(movie => {
+   createRowContent('#popular', myPopular)
+}
+
+const createRowContent = (rowName, contentArray) => {
+
+    // creating variables for future use
+   let backdrop = '';
+   let movieName = '';
+   let movieDescription = '';
+   let releaseDate = '';
+   let voteScore = 0;
+
+    contentArray.forEach(movie => {
         // set variables to pass into function, to generate html card elements
        backdrop = movie.poster_path;
        movieName = movie.original_title;
@@ -50,16 +56,18 @@ const generatePopularMovies = async () => {
        movieDescription = movie.overview;
        voteScore = movie.vote_average;
 
-       createMovieCard(movieName, releaseDate, backdrop, voteScore, movieDescription);
+       createMovieCard(rowName, movieName, releaseDate, backdrop, voteScore, movieDescription);
    })
-   return myPopular;
-
-//    let movieName = '';
-//    let releaseDate = '';
-//    let coverURL = ''; 
+   return contentArray;
 }
 
-const createMovieCard = (name, releaseDate, coverPhoto, vote_score, overview) => {
+const generateTopRated = async () => {
+    let myRes = await getTopRated();
+    console.log(myRes.results);
+    createRowContent('#top-rated', myRes.results);
+    console.log(document.getElementById('top-rated').children);
+}
+const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overview) => {
     let cardContainer = document.createElement('article');
     cardContainer.setAttribute('class', 'display-card');
 
@@ -95,7 +103,8 @@ const createMovieCard = (name, releaseDate, coverPhoto, vote_score, overview) =>
     textContainer.append(movieTitle, movieRelease);
     cardContainer.append(coverImg, vote_score_container, textContainer);
 
-    document.querySelector('#popular').append(cardContainer);
+    let parent = document.querySelector(`${rowId}`)
+    parent.append(cardContainer);
 }
 
 // createMovieCard('Bemnet', '03/2/2020', 'https://pbs.twimg.com/media/D8Dp0c5WkAAkvME?format=jpg&name=900x900')
@@ -109,14 +118,17 @@ function getVideoTrailerById(itemId) {
     .then(response => response.json())
     .then(res => res);
 
-    console.log('my apires: ', apiRes);
 
 }
 
-
+const getTopRated = async () => { 
+    let res = await (await (fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDBkey}&language=en-US&page=1`))).json();
+    return res
+}
 async function test() {
     let res =  await generatePopularMovies();
-    console.log(res);
+    let content2 = await generateTopRated();
+    // console.log(res);
 }
 
 test();
