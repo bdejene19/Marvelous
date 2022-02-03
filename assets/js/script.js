@@ -15,6 +15,7 @@ async function getPopularFromTmdbApi() {
 
 const getSearchTMDB = async (query) => {
     let searchResults = (await (await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDBkey}&language=en-US&query=${query}&page=1&include_adult=false`)).json());
+    // console.log('my search results from page: ', searchResults)
     return searchResults
 }
 
@@ -54,7 +55,7 @@ const createRowContent = (rowName, contentArray) => {
    })
    return contentArray;
 }
- g
+ 
 const openModal = async (event) => {
     let name = '';
     let movieLength = 0;
@@ -80,7 +81,7 @@ const openModal = async (event) => {
     $('#modal-overview').text(`Description: \n${movieOverview}`);
 
     $('#modal-content').dialog({
-        width: '60vw',
+        width: '60vw',        
     });
 }
 
@@ -153,7 +154,6 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
  */
 async function getVideoTrailerById(itemId) {
     let apiRes = await (await fetch(`https://imdb-api.com/en/API/Trailer/${imdbKey}/${itemId}`)).json();
-    console.log('trailer api request: ', apiRes.linkEmbed);
     return apiRes.linkEmbed
 }
 
@@ -177,91 +177,48 @@ test();
 let searchBtn = $('#search');
 
 const generateSearchResultCol = (name, release, media_type) => {
-    // console.log('ran my generate function')
-    
-
+    // row container
     let newContainer = document.createElement('article');
     newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center align-middle text-center');
-    console.log('errors occuring:');
+
+    // media type container 
+    let mediaTypeContainer = $('<p>');
+    $(mediaTypeContainer).attr('class', 'w-24')
+
+    
+    if (media_type === 'tv') {
+        $(mediaTypeContainer).text('📺');
+
+    } else {
+        $(mediaTypeContainer).text('🎬');
+    }
+
+    // movie title and release date container
+
     let mediaTextContainer = document.createElement('p');
-    mediaTextContainer.setAttribute('class', 'w-24');
+    mediaTextContainer.setAttribute('class', 'flex-grow text-left');
     mediaTextContainer.textContent = `${name} (${release})`;
-    newContainer.append(mediaTextContainer);
+
+
+    newContainer.append(mediaTypeContainer, mediaTextContainer);
     return newContainer;
-    // newContainer.append(mediaTextContainer);
-    // console.log(resultsContainer)
-    // resultsContainer.append(newContainer);
-    // console.log('my results container: ', resultsContainer);
-    // let container = $('<article>');
-    // $(container).attr('class', 'flex flex-row flex-wrap justify-center align-middle text-center');
     
-    // let mediaTypeContainer = $('<p>');
-    // $(mediaTypeContainer).attr('class', 'w-24')
-    // $(mediaTypeContainer).text('hello ');
-    // console.log('my media type container: ', mediaTypeContainer);
-    // $(container).append(mediaTypeContainer);
-    // console.log($(container).children());
-    // $(resultsContainer).append(container);
-    // // console.log(mediaTextContainer);
-    // let mediaTextContainer = $('<div>');
-    // mediaTextContainer.attr('class', 'flex-grow text-left');
-    // console.log('my media text container: ', mediaTextContainer);
-    // container.append(mediaTypeContainer, mediaTextContainer);
-
-    
-    
-    // let mediaText = $('<p>');
-    // mediaText.text(`${name} ${release}`);;
-    // console.log('my media text:) ', mediaText)
-
-
-    // mediaTextContainer.append(mediaText);
-    // console.log(mediaTextContainer);
-    // console.log('my media text container: ', mediaTextContainer);
-    // container.append(mediaTypeContainer, mediaTextContainer);
-    
-    // console.log('my container elements to be added: ', container);
-
-    // console.log('where I am targeting: ', resultsContainer);
-    // resultsContainer.append(container);
-    // console.log('my results container and end of generate function', resultsContainer);
-
-    // console.log('target after append: ', resultsContainer);
-
-
 }
-const displaySearchResults = async () => {
 
-    let userSearch = $('nav').children('input').val();
-    let resultsContainer = document.getElementById('search-results-query');
-    console.log('results container: ', resultsContainer);
+let storeKey = 'universal-search-query'
+const navigatetoSearch = () => {
+    // event.preventDefault();
+    // target input el
+    let userSearch = $('nav').children('form').children('input');
 
+    // get value in text box (from user)
+    let searchValue = $(userSearch).val();
+    
+    // save search to local storage
+    localStorage.setItem(storeKey, searchValue);
+
+    // navigate window to results page
     window.location = 'assets/pages/searchResults.html';
-    console.log('my tmdb search stops for some reason: ');
-    let userSearchResults = await getPopularFromTmdbApi();
-    // let results = userSearchResults.results;
-
-    let mediaType = '';
-    // if (results !== null || results !== undefined) {
-        userSearchResults.forEach(mediaItem => {
-            movieName = mediaItem.original_title
-            releaseDate = mediaItem.release_date;
-            
-    
-            if (mediaItem.media_type === 'tv') {
-                mediaType = '📺';
-            } 
-    
-            if (mediaItem.media_type === 'movie') {
-                mediaType = '🎬';
-            }
-            let generatedItem = generateSearchResultCol(movieName, releaseDate, mediaType);
-            // console.log('my results container', generatedItem);
-        })
-    // } else {
-    //     console.log('null result')
-    // }
-    
     // let validSearchReponses = await getFromIMDbApi(userSearch);
 }
-searchBtn.on('click', displaySearchResults);
+searchBtn.on('click', navigatetoSearch);
