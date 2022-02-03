@@ -12,11 +12,20 @@
     <link href='../css/searchpagestyles.css' rel='stylesheet'/>
     <link href='../css/style.css' rel='stylesheet'/>
 
+       <!-- link jquery UI styles -->
+   <link
+   rel="stylesheet"
+   href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+ />
+
     <style>
        
         </style>
 </head>
 <body class="">
+    <!-- link jquery to root -->
+  <div class="" id="root"></div>
+
     <!-- my nav bar with search input bar, content is in a flex row -->
     <header class="bg-blue-200 p-3 fles align">
         <nav class="align-text-bottom">
@@ -46,7 +55,8 @@
 
         <!-- where the api search results would go -->
         <section class='' id='search-results-query'>
-            <article class='flex flex-row flex-wrap justify-center align-middle text-center'>
+            
+            <!-- <article class='flex flex-row flex-wrap justify-center align-middle text-center'>
                 <div class="w-24">
                     🎬
                 </div>
@@ -56,11 +66,17 @@
                 <div class='flex-grow'>
                     release me
                 </div>
-            </article>
+            </article> -->
         </section>
     </main>
 
-    <script src='../js/searchres.js'></script>
+    <!-- add jquery library-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+    <!-- link jquery widgets -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- <script src='../js/searchres.js'></script> -->
+    <script src="../js/script.js"></script>
 </body>
 </html>
