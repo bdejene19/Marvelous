@@ -9,22 +9,34 @@
     <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
 
     <!-- link tailwind CSS to our HTML -->
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
-    <link href='../css/searchpagestyles.css' rel='stylesheet' />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
+
+    <link href='../css/searchpagestyles.css' rel='stylesheet'/>
+    <link href='../css/style.css' rel='stylesheet'/>
+
+       <!-- link jquery UI styles -->
+   <link
+   rel="stylesheet"
+   href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+ />
+
     <style>
 
     </style>
 </head>
 
 <body class="">
+    <!-- link jquery to root -->
+  <div class="" id="root"></div>
+
     <!-- my nav bar with search input bar, content is in a flex row -->
-    <header class="bg-blue-200 p-3 flex align">
-        <nav class="flex col-gap-10 items-baseline">
-            <div class="align-text-bottom ">
-                UniversalMovies
-            </div>
-            <input type='text' id="myInput" placeholder="Search for movies" onkeyup="myFunction()"
-                class="p-2 rounded" />
+    <header class="bg-blue-200 p-3 fles align">
+        <nav class="align-text-bottom">
+            <a href='../../index.html'>
+                <h1 >Uni<span class="highlight">VER</span>sal Movies 🎬</h1>
+            </a>
+            <input type="text" class="form-control" placeholder="Search..." />
+            <button type="submit" class="btn" id="search">Search for movie</button>
         </nav>
     </header>
 
@@ -42,27 +54,30 @@
         </section>
 
         <!-- where the api search results would go -->
-        <section class='' id='search_results'>
-            <section class='' id='search-results'>
-                <article class='flex flex-row flex-wrap justify-center align-middle text-center'>
-                    <div class="w-24">
-                        🎬
-                    </div>
-                    <div class="flex-grow text-left">
-                        <ul id="search_list">
-                            <li class='flex-grow'>
-                                <a href="#" id='movie-name'><span id='movie-release'></span></a>
-                        </ul>
-                    </div>
-                </article>
-            </section>
-
+        <section class='' id='search-results-query'>
+            
+            <!-- <article class='flex flex-row flex-wrap justify-center align-middle text-center'>
+                <div class="w-24">
+                    🎬
+                </div>
+                <div class="flex-grow text-left">
+                    My movie name
+                </div>
+                <div class='flex-grow'>
+                    release me
+                </div>
+            </article> -->
         </section>
     </main>
 
-    <script src='../js/script.js'></script>
-    <script src='./script.js'></script>
+    <!-- add jquery library-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+    <!-- link jquery widgets -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- <script src='../js/searchres.js'></script> -->
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

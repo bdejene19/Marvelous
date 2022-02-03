@@ -9,8 +9,13 @@ async function getFromIMDbApi(querySearch) {
 }
 
 async function getPopularFromTmdbApi() {
-    let response = (await (await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=ff34d6186c22970218f2e172d486df84&language=en-US&page=1`)).json());
-    return response.results
+    let popular = (await (await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${TMDBkey}&language=en-US&page=1`)).json());
+    return popular.results
+}
+
+const getSearchTMDB = async (query) => {
+    let searchResults = (await (await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDBkey}&language=en-US&query=${query}&page=1&include_adult=false`)).json());
+    return searchResults
 }
 
 
@@ -132,8 +137,12 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
     textContainer.append(movieTitle, movieRelease);
     cardContainer.append(coverImg, vote_score_container, textContainer);
 
-    let parent = document.querySelector(`${rowId}`)
-    parent.append(cardContainer);
+    let parent = document.querySelector(`${rowId}`);
+
+    if (parent) {
+        parent.append(cardContainer);
+
+    }
 }
 
 // createMovieCard('Bemnet', '03/2/2020', 'https://pbs.twimg.com/media/D8Dp0c5WkAAkvME?format=jpg&name=900x900')
@@ -167,16 +176,92 @@ test();
 
 let searchBtn = $('#search');
 
-const getSearchResults = () => {
+const generateSearchResultCol = (name, release, media_type) => {
+    // console.log('ran my generate function')
+    
 
-    let userSearch = $('nav').children('input').val();
-
-    // let validSearchReponses = await getFromIMDbApi(userSearch);
+    let newContainer = document.createElement('article');
+    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center align-middle text-center');
+    console.log('errors occuring:');
+    let mediaTextContainer = document.createElement('p');
+    mediaTextContainer.setAttribute('class', 'w-24');
+    mediaTextContainer.textContent = `${name} (${release})`;
+    newContainer.append(mediaTextContainer);
+    return newContainer;
+    // newContainer.append(mediaTextContainer);
+    // console.log(resultsContainer)
+    // resultsContainer.append(newContainer);
+    // console.log('my results container: ', resultsContainer);
+    // let container = $('<article>');
+    // $(container).attr('class', 'flex flex-row flex-wrap justify-center align-middle text-center');
+    
+    // let mediaTypeContainer = $('<p>');
+    // $(mediaTypeContainer).attr('class', 'w-24')
+    // $(mediaTypeContainer).text('hello ');
+    // console.log('my media type container: ', mediaTypeContainer);
+    // $(container).append(mediaTypeContainer);
+    // console.log($(container).children());
+    // $(resultsContainer).append(container);
+    // // console.log(mediaTextContainer);
+    // let mediaTextContainer = $('<div>');
+    // mediaTextContainer.attr('class', 'flex-grow text-left');
+    // console.log('my media text container: ', mediaTextContainer);
+    // container.append(mediaTypeContainer, mediaTextContainer);
 
     
-    window.location = 'assets/pages/searchResults.html';
-    console.log('my user search: ', userSearch);
+    
+    // let mediaText = $('<p>');
+    // mediaText.text(`${name} ${release}`);;
+    // console.log('my media text:) ', mediaText)
+
+
+    // mediaTextContainer.append(mediaText);
+    // console.log(mediaTextContainer);
+    // console.log('my media text container: ', mediaTextContainer);
+    // container.append(mediaTypeContainer, mediaTextContainer);
+    
+    // console.log('my container elements to be added: ', container);
+
+    // console.log('where I am targeting: ', resultsContainer);
+    // resultsContainer.append(container);
+    // console.log('my results container and end of generate function', resultsContainer);
+
+    // console.log('target after append: ', resultsContainer);
+
 
 }
-console.log('my searchBtn');
-searchBtn.on('click', getSearchResults);
+const displaySearchResults = async () => {
+
+    let userSearch = $('nav').children('input').val();
+    let resultsContainer = document.getElementById('search-results-query');
+    console.log('results container: ', resultsContainer);
+
+    window.location = 'assets/pages/searchResults.html';
+    console.log('my tmdb search stops for some reason: ');
+    let userSearchResults = await getPopularFromTmdbApi();
+    // let results = userSearchResults.results;
+
+    let mediaType = '';
+    // if (results !== null || results !== undefined) {
+        userSearchResults.forEach(mediaItem => {
+            movieName = mediaItem.original_title
+            releaseDate = mediaItem.release_date;
+            
+    
+            if (mediaItem.media_type === 'tv') {
+                mediaType = '📺';
+            } 
+    
+            if (mediaItem.media_type === 'movie') {
+                mediaType = '🎬';
+            }
+            let generatedItem = generateSearchResultCol(movieName, releaseDate, mediaType);
+            // console.log('my results container', generatedItem);
+        })
+    // } else {
+    //     console.log('null result')
+    // }
+    
+    // let validSearchReponses = await getFromIMDbApi(userSearch);
+}
+searchBtn.on('click', displaySearchResults);
