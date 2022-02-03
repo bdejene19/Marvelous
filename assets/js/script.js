@@ -181,7 +181,7 @@ const generateSearchResultCol = (name, release, media_type) => {
 
     let newContainer = document.createElement('article');
     newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center align-middle text-center');
-
+    console.log('errors occuring:');
     let mediaTextContainer = document.createElement('p');
     mediaTextContainer.setAttribute('class', 'w-24');
     mediaTextContainer.textContent = `${name} (${release})`;
