@@ -161,3 +161,22 @@ async function test() {
 
 test();
 // getVideoTrailerById('tt5295990');
+
+
+// add event listener for search btn
+
+let searchBtn = $('#search');
+
+const getSearchResults = () => {
+
+    let userSearch = $('nav').children('input').val();
+
+    // let validSearchReponses = await getFromIMDbApi(userSearch);
+
+    
+    window.location = 'assets/pages/searchResults.html';
+    console.log('my user search: ', userSearch);
+
+}
+console.log('my searchBtn');
+searchBtn.on('click', getSearchResults);

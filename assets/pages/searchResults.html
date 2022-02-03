@@ -8,19 +8,21 @@
 
     <!-- link tailwind CSS to our HTML -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
+
     <link href='../css/searchpagestyles.css' rel='stylesheet'/>
+    <link href='../css/style.css' rel='stylesheet'/>
+
     <style>
        
         </style>
 </head>
 <body class="">
     <!-- my nav bar with search input bar, content is in a flex row -->
-    <header class="bg-blue-200 p-3 flex align">
-        <nav class="flex col-gap-10 items-baseline">
-            <div class="align-text-bottom ">
-                my icon
-            </div>
-            <input type='text' placeholder="Spider-Man: Far from Home" class="p-2 rounded"/> 
+    <header class="bg-blue-200 p-3 fles align">
+        <nav class="align-text-bottom">
+            <h1 >Uni<span class="highlight">VER</span>sal Movies 🎬</h1>
+            <input type="text" class="form-control" placeholder="Search..." />
+            <button type="submit" class="btn" id="search">Search for movie</button>
         </nav>
     </header>
 
@@ -41,11 +43,22 @@
         </section>
 
         <!-- where the api search results would go -->
-        <section class='' id='search-results'>
-            
+        <section class='' id='search-results-query'>
+            <article class='flex flex-row flex-wrap justify-center align-middle text-center'>
+                <div class="w-24">
+                    🎬
+                </div>
+                <div class="flex-grow text-left">
+                    My movie name
+                </div>
+                <div class='flex-grow'>
+                    release me
+                </div>
+            </article>
         </section>
     </main>
 
-    <script src='../js/script.js'></script>
+    <script src='../js/searchres.js'></script>
+
 </body>
 </html>
