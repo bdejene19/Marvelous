@@ -178,3 +178,16 @@ h2 {
     }
 
 }
+
+
+/* page 2 */
+
+#search-results-query {
+    border: solid pink 10px;
+}
+
+#search-results-query article {
+    border: solid green 3px;
+    height: 10vh;
+    
+}
