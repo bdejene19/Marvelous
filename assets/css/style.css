@@ -10,6 +10,14 @@
     box-sizing:  border-box;
 }
 
+header h1 {
+    width: fit-content;
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: rgb(101, 99, 99);
+    cursor: pointer;
+}
+
 .highlight{
     color:red ;
     font-weight: bold;
@@ -40,7 +48,7 @@
 }
 
 .form-control {
-    width: 760px;
+    width: 60vw;;
     padding: .375rem .75rem;
     font-size: 1rem;
     font-weight: 400;
@@ -62,7 +70,10 @@ footer{
 footer p{
     margin-right: 10%;
 }
+main {
+        padding: 3em 1em;
 
+}
 /* beginning of main content section => showing popular movies etc.  */
 .display-row {
     display: flex;
@@ -70,17 +81,20 @@ footer p{
     align-items: flex-start;
     align-content: flex-start;
     width: max-content;
-    overflow: hidden;
-    padding: 3em 1em;
     row-gap: 1em;
+    overflow: hidden;
+
     column-gap: 3em;;
     /* border: solid pink 3px; */
 }
 main section {
-    overflow: hidden;
     overflow-x: scroll;
+
 }
-.display-row h2 {
+
+section article {
+}
+h2 {
     flex: 1 1 100%;
     text-align: left;
     font-size: 2.5rem;
@@ -95,6 +109,7 @@ main section {
 
 .display-card img {
     border-radius: 10px;
+    width: 50vw;
     height: 30vh;
 }
 /* Adding hover */
@@ -111,4 +126,49 @@ main section {
 
 .display-card h3{
     padding-top: 1em;
+}
+
+#modal-content {
+    padding: 1em;
+    font-size: 1.25rem;
+    display: none;
+    flex-direction: column;
+    /* justify-content: center;; */
+}
+
+#modal-content iframe {
+    width: 77%;
+    height: 45vh;
+    border-radius: 10px;
+    align-self: center;
+    box-shadow: 0 10px 10px 10px;
+
+}
+
+#modal-content h3 {
+    font-weight: 600;
+}
+#modal-content article {
+    padding: 2em 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#modal-content article p {
+    flex: 1 1 10em;
+}
+
+
+#modal-overview {
+    padding-top: 1em;
+}
+
+@media screen and (max-width: 640px) {
+    .display-card {
+        width: 25vw;
+    }
+    .display-row {
+        column-gap: 2em;
+    }
+
 }
