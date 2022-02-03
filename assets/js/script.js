@@ -54,7 +54,7 @@ const createRowContent = (rowName, contentArray) => {
    })
    return contentArray;
 }
-
+ g
 const openModal = async (event) => {
     let name = '';
     let movieLength = 0;
@@ -173,6 +173,7 @@ test();
 
 
 // add event listener for search btn
+
 let searchBtn = $('#search');
 
 const generateSearchResultCol = (name, release, media_type) => {
