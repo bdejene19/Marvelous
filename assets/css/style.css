@@ -60,16 +60,17 @@ header h1 {
     border: 1px solid #ced4da;
     border-radius: .25rem;
 }
-footer{
-    padding: 20px;
-    margin-top: 20px;
-    color: #ffffff;
-    background-color: #4D4F53;
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #007bff;
+    color: white;
     text-align: center;
-}
-footer p{
-    margin-right: 10%;
-}
+
+
 main {
         padding: 3em 1em;
 
