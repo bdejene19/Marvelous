@@ -137,6 +137,8 @@ h2 {
 #modal-content {
     padding: 1em;
     font-size: 1.25rem;
+    height: 30vh;
+    overflow: hidden;
     display: none;
     flex-direction: column;
     /* justify-content: center;; */
