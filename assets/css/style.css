@@ -90,11 +90,13 @@ main {
 }
 main section {
     overflow-x: scroll;
-
 }
 
 section article {
+    height: 100%;
+    padding: 1.25em 0.75em;
 }
+
 h2 {
     flex: 1 1 100%;
     text-align: left;
@@ -103,15 +105,19 @@ h2 {
 }
 .display-card {
     width: 10vw;
+    height: 100%;
     font-weight: 600;
     cursor: pointer;
+    height: fit-content;
+
 
 }
 
 .display-card img {
     border-radius: 10px;
-    width: 50vw;
     height: 30vh;
+    width: 50vw;
+    /* height: 30vh; */
 }
 /* Adding hover */
 .display-card:hover{
@@ -172,4 +178,17 @@ h2 {
         column-gap: 2em;
     }
 
+}
+
+
+/* page 2 */
+
+#search-results-query {
+    border: solid pink 10px;
+}
+
+#search-results-query article {
+    border: solid green 3px;
+    height: 10vh;
+    
 }
