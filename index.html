@@ -5,9 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-  <!-- Font Awesome Icon Library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Add tailwind link -->
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -18,10 +15,7 @@
       href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
   <title>Universal Movies</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<!--   <body style="background-color:#E6E6FA;"></body> -->
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-  
 </head>
 
 <body>
@@ -43,14 +37,14 @@
   <main id="movies_container">
       <!-- List of popular tv shows and movies -->
       <h2>Popular</h2>
-      <section>
+      <section class='home-display'>
         <article class='display-row' id='popular'>
         </article>
       </section>
 
       <!-- List of Top Rated tv shows and movies -->
       <h2>Top Rated</h2>
-      <section>
+      <section class='home-display'>
         <article class="display-row" id='top-rated'>
         </article>
       </section>
@@ -71,6 +65,15 @@
       </section>
   </main>
 
+  <footer>
+    <div class="footer">
+     <p>© 2022 Universal Movies</p>
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star "></span>
+ </footer>
 
    <!-- add jquery library-->
    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -80,16 +83,6 @@
 
    <!-- script file for home page -->
    <script src='./assets/js/script.js'></script>
-  <footer>
-    <div class="footer">
-    <p>© 2022 Universal Movies</p>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-  </footer>
 </body>
-  
 
 </html>

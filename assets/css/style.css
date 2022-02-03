@@ -60,8 +60,8 @@ header h1 {
     border: 1px solid #ced4da;
     border-radius: .25rem;
 }
+
 .footer {
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -69,6 +69,7 @@ header h1 {
     background-color: #007bff;
     color: white;
     text-align: center;
+}
 
 
 main {
@@ -88,7 +89,7 @@ main {
     column-gap: 3em;;
     /* border: solid pink 3px; */
 }
-main section {
+main .home-display {
     overflow-x: scroll;
 }
 
@@ -186,11 +187,9 @@ h2 {
 /* page 2 */
 
 #search-results-query {
-    border: solid pink 10px;
 }
 
 #search-results-query article {
-    border: solid green 3px;
     height: 10vh;
     
 }

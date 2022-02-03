@@ -23,7 +23,7 @@
 }
 
 #search_list li a {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   margin-top: -1px; /* Prevent double borders */
   background-color: #f6f6f6;
   padding: 12px;
@@ -71,6 +71,29 @@
   
   .tooltip:hover .tooltiptext {
     visibility: visible;
+  }
+
+
+  #searchResults  {
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    padding-top: 1em;
+  } 
+
+  #searchResults article {
+    border-radius: 15px;
+    font-size: 1.25rem;
+  }
+
+  #searchResults article:hover {
+    background-color: lightblue;
+    color: red;
+    font-weight: 600;
+    transform: skewY(1.2);
+    box-shadow: 0 3px 3px 3px grey;
+    cursor: pointer;
   }
 
 

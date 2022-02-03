@@ -14,43 +14,22 @@ const displaySearchResults = async () => {
     let mySearchRes = await getSearchTMDB(userSearch);
     let results = mySearchRes.results;
 
+    let movieName = '';
+    let releaseDate = '';
+    let mediaType = '';
     results.forEach(mediaItem => {
         movieName = mediaItem.original_title
         releaseDate = mediaItem.release_date;
-        
-    
-        // if (mediaItem.media_type === 'tv') {
-        //     mediaType = '📺';
-        // } 
-    
-        // if (mediaItem.media_type === 'movie') {
-        //     mediaType = '🎬';
-        // }
-        let generatedItem = generateSearchResultCol(movieName, releaseDate, mediaType);
-        resultsContainer.appendChild(generatedItem);
+        mediaType = mediaItem.media_type;
 
-        // console.log('my results container', generatedItem);
+        if (movieName !== undefined) {
+            let generatedItem = generateSearchResultCol(movieName, releaseDate, mediaType);
+            resultsContainer.appendChild(generatedItem);
+        }
     })
-    console.log('my updated results container: ', resultsContainer);
 }
 
 displaySearchResults();
-// if (results !== null || results !== undefined) {
-// results.forEach(mediaItem => {
-//     movieName = mediaItem.original_title
-//     releaseDate = mediaItem.release_date;
-    
 
-//     if (mediaItem.media_type === 'tv') {
-//         mediaType = '📺';
-//     } 
-
-//     if (mediaItem.media_type === 'movie') {
-//         mediaType = '🎬';
-//     }
-//     let generatedItem = generateSearchResultCol(movieName, releaseDate, mediaType);
-//     resultsContainer.appendChild(generatedItem)
-//     // console.log('my results container', generatedItem);
-// })
 
 

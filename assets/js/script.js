@@ -179,18 +179,17 @@ let searchBtn = $('#search');
 const generateSearchResultCol = (name, release, media_type) => {
     // row container
     let newContainer = document.createElement('article');
-    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center align-middle text-center');
+    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center align-middle text-center border-2 border-sky-300">');
 
     // media type container 
-    let mediaTypeContainer = $('<p>');
-    $(mediaTypeContainer).attr('class', 'w-24')
+    let mediaTypeContainer = document.createElement('p');
+    mediaTypeContainer.setAttribute('class', 'w-24')
 
-    
     if (media_type === 'tv') {
-        $(mediaTypeContainer).text('📺');
+        mediaTypeContainer.textContent = '📺'
 
     } else {
-        $(mediaTypeContainer).text('🎬');
+        mediaTypeContainer.textContent = '🎬';
     }
 
     // movie title and release date container
@@ -199,6 +198,7 @@ const generateSearchResultCol = (name, release, media_type) => {
     mediaTextContainer.setAttribute('class', 'flex-grow text-left');
     mediaTextContainer.textContent = `${name} (${release})`;
 
+    
 
     newContainer.append(mediaTypeContainer, mediaTextContainer);
     return newContainer;
