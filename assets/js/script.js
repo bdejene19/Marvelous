@@ -3,16 +3,30 @@ let imdbKey = 'k_1qu3iir5';
 let TMDBkey = 'ff34d6186c22970218f2e172d486df84';
 
 // search results for input search
+/**
+ * 
+ * @param {string} querySearch User input string to fetch from Imdb API.
+ * @returns Results from api fetch in array of JSONs from IMDb api
+ */
 async function getFromIMDbApi(querySearch) {
     let response = (await (await fetch(`https://imdb-api.com/en/API/Search/${imdbKey}/${querySearch}`)).json());
     return response;
 }
 
+/**
+ * Fetches popular movies data from TMDb API 
+ * @returns Popular movie array of JSON objects
+ */
 async function getPopularFromTmdbApi() {
     let popular = (await (await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${TMDBkey}&language=en-US&page=1`)).json());
     return popular.results
 }
 
+/**
+ * 
+ * @param {string} query User input string to fetch from TMDb API.
+ * @returns Results from api fetch in array of JSONs from TMDb api.
+ */
 const getSearchTMDB = async (query) => {
     let searchResults = (await (await fetch(`https://api.themoviedb.org/3/search/multi?api_key=${TMDBkey}&language=en-US&query=${query}&page=1&include_adult=false`)).json());
     // console.log('my search results from page: ', searchResults)
@@ -20,14 +34,7 @@ const getSearchTMDB = async (query) => {
 }
 
 
-/**
- * 
- * @param {string} releaseDate Movie's date of release to cinemas
- * @param {string} name Name of Movie
- * @param {string} coverPhoto Url link for coverphoto
- * @returns {HTMLElement} A newly generated html element that contains the following information
- * 
- */
+
 const generatePopularMovies = async () => {
     // me getting popular data from tmdb api
    let myPopular = await getPopularFromTmdbApi();
@@ -53,31 +60,41 @@ const createRowContent = (rowName, contentArray) => {
    })
    return contentArray;
 }
- 
+
+
+/**
+ * Creates modal using jQuery dialog box. Box opens on event click. Load icon becomes visible and spins till data is fetched.
+ * @param {click} event Click event triggers handling of dialog box
+ */
 const openModal = async (event) => {
+    // target and make load spinner visible 
     let loadIcon = document.getElementById('loader');
     loadIcon.style.display = 'block';
 
-
+    // initialize variables to be included in modal
     let name = '';
-    let movieLength = 0;
     let movieOverview = '';
     let release_date = '';    
     let cardPlaceHolders = null ;
 
+    // check window path to handle card display on different pages (e.g. home vs search results)
     let path = window.location.pathname;
-
     if (path === '/index.html') {
         cardPlaceHolders = $(event.target).parents('article')
     } else {
         cardPlaceHolders = $(event.target);
     }
+
+    // retrieve dataset attributes from card
     let currentCard = cardPlaceHolders[0];
     let cardDataSet = currentCard.dataset;
 
 
+    // set name from card element data set to fetch from IMDb api
     name = cardDataSet.name;
     let res = await getFromIMDbApi(name);
+
+    // get trailer id from results
     let trailerId = res.results[0].id;
 
     let trailerSrc = await getVideoTrailerById(trailerId)
@@ -110,15 +127,29 @@ const openModal = async (event) => {
     });
 }
 
+
+// target rows of content on home page and add click event to elements (movie cards) that have a class of '.display-card'
 let rows = $('.display-row');
 rows.on('click', '.display-card', openModal)
 
-
+/**
+ * Populates top rated section on home. Fetches top rated movies from tmdb and creates row content
+ */
 const generateTopRated = async () => {
     let myRes = await getTopRated();
     createRowContent('#top-rated', myRes.results);
     // console.log(document.getElementById('top-rated').children);
 }
+
+/**
+ * 
+ * @param {string} rowId HTML row element id for insertion
+ * @param {string} name Name of Movie
+ * @param {string} releaseDate Movie's date of release to cinemas
+ * @param {string} coverPhoto Url link for coverphoto   
+ * @param {string} vote_score Average movie vote score
+ * @param {string} overview Description of movie plot
+ */
 const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overview) => {
     let cardContainer = document.createElement('article');
     cardContainer.setAttribute('class', 'display-card');
@@ -126,6 +157,7 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
 
         // let reformatDate = moment(release_date).format('MMM Do yy');
 
+    // set data attributes for modal display
     cardContainer.setAttribute('data-name', name);
     cardContainer.setAttribute('data-release_date', releaseDate);
     cardContainer.setAttribute('data-cover-photo', coverPhoto);
@@ -139,13 +171,15 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
     coverImg.setAttribute('src', `https://image.tmdb.org/t/p/w500/${coverPhoto}` );
     coverImg.setAttribute('alt', name);
 
+    // movie vote score
     let vote_score_container = document.createElement('span');
-    let textContainer = document.createElement('div');
-
-
     vote_score_container.textContent = vote_score;
+
+
+    let textContainer = document.createElement('div');
     let textColor = '';
 
+    // conditional color of text => color of text dependent on movies averate vote score.
     if (vote_score >= 8) {
         textColor = 'green';
     } else if (vote_score >= 7 && vote_score < 8) {
@@ -155,6 +189,8 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
     }
     vote_score_container.style.color = textColor;
 
+
+    // create movie title and release date elements => set text of elements to respective parameters
     let movieTitle = document.createElement('h3');
     movieTitle.textContent = name;
 
@@ -162,37 +198,47 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
     let movieRelease = document.createElement('p');
     movieRelease.textContent = releaseDate;
 
+    // append items to text container, then append all items to cardContainer
     textContainer.append(movieTitle, movieRelease);
     cardContainer.append(coverImg, vote_score_container, textContainer);
 
     let parent = document.querySelector(`${rowId}`);
 
+    // make sure row where data will be inserted exists, if so => apppend the card generated
     if (parent) {
         parent.append(cardContainer);
 
     }
 }
 
-// createMovieCard('Bemnet', '03/2/2020', 'https://pbs.twimg.com/media/D8Dp0c5WkAAkvME?format=jpg&name=900x900')
-
 /**
  * 
- * @param {string} itemId Id value of item searched
+ * @param {string} itemId Id value of item searched.
+ * @returns Trailer embedded link for specific id.
  */
 async function getVideoTrailerById(itemId) {
     let apiRes = await (await fetch(`https://imdb-api.com/en/API/Trailer/${imdbKey}/${itemId}`)).json();
     return apiRes.linkEmbed
 }
 
+/**
+ * Call to TMDb api to fetch top rated movies
+ * @returns Popular movies array from fetch request
+ */
 const getTopRated = async () => { 
     let res = await (await (fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDBkey}&language=en-US&page=1`))).json();
     return res
 }
+
+/**
+ * Populates home page with popular and top rated movies data.
+ */
 async function test() {
     generatePopularMovies();
     generateTopRated();
 }
 
+// run function to populate HTML with popular and top rated content
 test();
 
 
@@ -215,11 +261,12 @@ const generateSearchResultCol = (name, release, media_type, posterPath, movie_ov
     mediaTypeContainer.setAttribute('alt', name);
     mediaTypeContainer.setAttribute('class', 'w-24')
     let mediaForm = '';
-    if (media_type === 'tv') {
-        mediaForm = '📺'
+    if (media_type === 'movie') {
+        mediaForm = '🎬';
+
 
     } else {
-        mediaForm = '🎬';
+        mediaForm = '📺'
     }
 
     // movie title and release date container

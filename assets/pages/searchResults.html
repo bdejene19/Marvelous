@@ -38,17 +38,22 @@
                 <h1 >Uni<span class="highlight">VER</span>sal Movies 🎬</h1>
             </a>
             <form>
-
+                <!-- search bar for user input -->
                 <input type="text" class="form-control" placeholder="Search..." />
+
+                <!-- handles movie search functionality -->
                 <button type="submit" class="btn" id="search">Search for movie</button>
             </form>
         </nav>
     </header>
 
+    <!-- main content of results page => title of query and search results -->
     <main>
         <section class=" p-3 pl-10 col-gap-3 border-solid border-b-2 border-blue-300">
+            <!-- title of whata user searched for -->
             <h3>Search for: "<span id='search-for'></span>" </h3>
-            <!-- my legend for movies and Tv shows icons -->
+
+            <!-- my legend for movies and Tv shows icons => contain tooltips for text explanation -->
             <div class='flex flex-wrap justify-center text-center w-64 '>
                 <div class="tooltip flex-grow">🎬
                     <span class="tooltiptext">Movie</span>
@@ -59,16 +64,16 @@
             </div>
         </section>
 
+        <!-- loader icon => hidden unless opening modal -->
         <div class='loader' id='loader'></div>
 
         <!-- where the api search results would go -->
         <section id='searchResults'></section>
 
         <section id='modal-content'>
-            <!-- genre, length, release date, etc -->
+            <!-- release date, etc -->
            <iframe src='' autoplay controls id='modal-trailer'></iframe>
            <article>
-             <p id='modal-genre'></p>
              <p id='modal-release'></p>
              <p id='modal-length'></p>
            </article>

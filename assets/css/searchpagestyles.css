@@ -1,4 +1,4 @@
-/* Universal */
+/* Results page specific styling*/
 * {
     margin: 0;
     padding: 0;
@@ -42,70 +42,74 @@
     display: inline-block;
     cursor: pointer;
   }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -60px;
-  }
-  
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
+/* visual text above of tool tip */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* tool tip arrow head */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
 
 
-  #searchResults  {
-    /* background-color: blue; */
-    display: flex;
-    flex-direction: column;
-    row-gap: 1em;
-    padding-top: 1em;
-    justify-content: center;
-  } 
+/* create hover text appears on tool tip hover */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
-  #searchResults article {
-    border-radius: 15px;
-    font-size: 1.25rem;
-    display: flex;
 
-    column-gap: 3em;
-    align-items: center;
-  }
+/* display search results in column fashion => add general  */
+#searchResults  {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+  padding-top: 1em;
+  justify-content: center;
+} 
 
-  #searchResults article:hover {
-    background-color: lightblue;
-    color: red;
-    font-weight: 600;
-    transform: skewY(1.2);
-    box-shadow: 0 3px 3px 3px grey;
-    cursor: pointer;
-  }
+#searchResults article {
+  border-radius: 15px;
+  font-size: 1.25rem;
+  display: flex;
 
-  #searchResults img {
-    height: 100%;
-    border-radius: 10px 0 0 10px;
-    /* width: 3vw; */
-  }
+  column-gap: 3em;
+  align-items: center;
+}
+
+#searchResults article:hover {
+  background-color: lightblue;
+  color: red;
+  font-weight: 600;
+  transform: skewY(1.2);
+  box-shadow: 0 3px 3px 3px grey;
+  cursor: pointer;
+}
+
+#searchResults img {
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  /* width: 3vw; */
+}
 main {
   padding: 0 1em;
 }
