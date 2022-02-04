@@ -219,8 +219,7 @@ const navigatetoSearch = () => {
 
         $(userSearch).css('border', 'solid red 3px')
         setTimeout(() => {
-            $(userSearch).css('border', 'none')
-
+            $(userSearch).css('border', 'none');
         }, 2000)
     } else {
         // save search to local storage
