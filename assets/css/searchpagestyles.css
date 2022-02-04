@@ -80,11 +80,16 @@
     flex-direction: column;
     row-gap: 1em;
     padding-top: 1em;
+    justify-content: center;
   } 
 
   #searchResults article {
     border-radius: 15px;
     font-size: 1.25rem;
+    display: flex;
+
+    column-gap: 3em;
+    align-items: center;
   }
 
   #searchResults article:hover {
@@ -94,6 +99,12 @@
     transform: skewY(1.2);
     box-shadow: 0 3px 3px 3px grey;
     cursor: pointer;
+  }
+
+  #searchResults img {
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    /* width: 3vw; */
   }
 
 

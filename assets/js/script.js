@@ -176,27 +176,29 @@ test();
 
 let searchBtn = $('#search');
 
-const generateSearchResultCol = (name, release, media_type) => {
+const generateSearchResultCol = (name, release, media_type, posterPath) => {
     // row container
     let newContainer = document.createElement('article');
-    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center align-middle text-center border-2 border-sky-300">');
+    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center p-0 align-middle text-center border-2 border-sky-300">');
 
     // media type container 
-    let mediaTypeContainer = document.createElement('p');
+    let mediaTypeContainer = document.createElement('img');
+    mediaTypeContainer.setAttribute('src',`https://image.tmdb.org/t/p/w500/${posterPath}`);
+    mediaTypeContainer.setAttribute('alt', name);
     mediaTypeContainer.setAttribute('class', 'w-24')
-    console.log(media_type);
+    let mediaForm = '';
     if (media_type === 'tv') {
-        mediaTypeContainer.textContent = '📺'
+        mediaForm = '📺'
 
     } else {
-        mediaTypeContainer.textContent = '🎬';
+        mediaForm = '🎬';
     }
 
     // movie title and release date container
 
     let mediaTextContainer = document.createElement('p');
     mediaTextContainer.setAttribute('class', 'flex-grow text-left');
-    mediaTextContainer.textContent = `${name} (${release})`;
+    mediaTextContainer.textContent = `${name} (${release}) ${mediaForm}`;
 
     
 

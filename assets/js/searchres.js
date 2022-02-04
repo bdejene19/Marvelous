@@ -17,13 +17,17 @@ const displaySearchResults = async () => {
     let movieName = '';
     let releaseDate = '';
     let mediaType = '';
+    let posterPath = '';
+    let overview = '';
     results.forEach(mediaItem => {
+        console.log('my media item: ', mediaItem);
         movieName = mediaItem.original_title
         releaseDate = mediaItem.release_date;
         mediaType = mediaItem.media_type;
-
+        posterPath = mediaItem.poster_path;
+        overview = mediaItem.overview;
         if (movieName !== undefined) {
-            let generatedItem = generateSearchResultCol(movieName, releaseDate, mediaType);
+            let generatedItem = generateSearchResultCol(movieName, releaseDate, mediaType, posterPath, overview);
             resultsContainer.appendChild(generatedItem);
         }
     })
