@@ -184,7 +184,7 @@ const generateSearchResultCol = (name, release, media_type) => {
     // media type container 
     let mediaTypeContainer = document.createElement('p');
     mediaTypeContainer.setAttribute('class', 'w-24')
-
+    console.log(media_type);
     if (media_type === 'tv') {
         mediaTypeContainer.textContent = '📺'
 
@@ -210,15 +210,23 @@ const navigatetoSearch = () => {
     // event.preventDefault();
     // target input el
     let userSearch = $('nav').children('form').children('input');
-
     // get value in text box (from user)
     let searchValue = $(userSearch).val();
-    
+    console.log('this is what is being search: ', searchValue)
+
     // save search to local storage
     localStorage.setItem(storeKey, searchValue);
 
+    let pathName = window.location.pathname;
+    if (pathName === '/' || pathName === '/index.html') {
+        window.location = 'assets/pages/searchResults.html';
+
+    } else {
+        window.location = '../../assets/pages/searchResults.html'
+    }
+
+    console.log('current window location path: ', window.location.pathname)
     // navigate window to results page
-    window.location = 'assets/pages/searchResults.html';
     // let validSearchReponses = await getFromIMDbApi(userSearch);
 }
 searchBtn.on('click', navigatetoSearch);
