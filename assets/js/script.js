@@ -226,11 +226,11 @@ const navigatetoSearch = () => {
         localStorage.setItem(storeKey, searchValue);
 
         let pathName = window.location.pathname;
-        if (pathName === '/' || pathName === '/index.html') {
-            window.location = 'assets/pages/searchResults.html';
+        if (pathName === '/' || pathName === 'index.html') {
+            window.location = './assets/pages/searchResults.html';
 
         } else {
-            window.location = '../../assets/pages/searchResults.html'
+            window.location = './assets/pages/searchResults.html'
         }
     }
 }
