@@ -44,4 +44,5 @@ Cover photo for that movie is presented
 Screenshot:
 ![create screenshot](images\screenshot.JPG)
 ---
+/Users/Bemnet/Documents/BootcampClassWork/07-Project-1/02-Homework/assets/imgs/projectGif.mp4
 © 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
