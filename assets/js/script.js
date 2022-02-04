@@ -62,8 +62,16 @@ const openModal = async (event) => {
     let name = '';
     let movieLength = 0;
     let movieOverview = '';
-    let release_date = '';
-    let cardPlaceHolders = $(event.target).parents('article');
+    let release_date = '';    
+    let cardPlaceHolders = null ;
+
+    let path = window.location.pathname;
+
+    if (path === '/index.html') {
+        cardPlaceHolders = $(event.target).parents('article')
+    } else {
+        cardPlaceHolders = $(event.target);
+    }
     let currentCard = cardPlaceHolders[0];
     let cardDataSet = currentCard.dataset;
 
@@ -73,7 +81,7 @@ const openModal = async (event) => {
     let trailerId = res.results[0].id;
 
     let trailerSrc = await getVideoTrailerById(trailerId)
-
+    // console.log('my trailer source: ', trailerSrc)
     if (trailerSrc) {
         loadIcon.style.display = 'none';
     }
@@ -82,12 +90,23 @@ const openModal = async (event) => {
     // console.log('name generated from imdb request: ', res);
     movieOverview = cardDataSet.description
     release_date = cardDataSet.release_date
+
+    let reformatDate = moment(release_date).format('MMM Do yy');
+
     $('#modal-name').text(name);
-    $('#modal-release').text(`Release: ${release_date}`)
+    $('#modal-release').text(`Release: ${reformatDate}`)
     $('#modal-overview').text(`${movieOverview}`);
 
+    let windowWidth = window.innerWidth ;
+    let dialogWidth = 0;
+    if (windowWidth > 1400) {
+        dialogWidth = 60;
+    } else if (windowWidth < 700) {
+        dialogWidth = 88;
+    }
+
     $('#modal-content').dialog({
-        width: '60vw',        
+        width: `${dialogWidth}vw`,        
     });
 }
 
@@ -104,6 +123,8 @@ const createMovieCard = (rowId, name, releaseDate, coverPhoto, vote_score, overv
     let cardContainer = document.createElement('article');
     cardContainer.setAttribute('class', 'display-card');
     cardContainer.setAttribute('id', '');
+
+        // let reformatDate = moment(release_date).format('MMM Do yy');
 
     cardContainer.setAttribute('data-name', name);
     cardContainer.setAttribute('data-release_date', releaseDate);
@@ -170,22 +191,23 @@ const getTopRated = async () => {
 async function test() {
     generatePopularMovies();
     generateTopRated();
-  
-    // console.log(res);
 }
 
 test();
-// getVideoTrailerById('tt5295990');
 
 
 // add event listener for search btn
 
 let searchBtn = $('#search');
 
-const generateSearchResultCol = (name, release, media_type, posterPath) => {
+const generateSearchResultCol = (name, release, media_type, posterPath, movie_overview) => {
     // row container
     let newContainer = document.createElement('article');
-    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center p-0 align-middle text-center border-2 border-sky-300">');
+    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center p-0 align-middle text-center border-2 border-sky-300');
+    newContainer.setAttribute('data-name', name);
+    newContainer.setAttribute('data-release_date', release);
+    newContainer.setAttribute('data-cover-photo', posterPath);
+    newContainer.setAttribute('data-description', movie_overview);
 
     // media type container 
     let mediaTypeContainer = document.createElement('img');
@@ -201,14 +223,22 @@ const generateSearchResultCol = (name, release, media_type, posterPath) => {
     }
 
     // movie title and release date container
+    let movieSideContent = document.createElement('div');
+    movieSideContent.setAttribute('class', 'flex-grow text-left');
 
-    let mediaTextContainer = document.createElement('p');
-    mediaTextContainer.setAttribute('class', 'flex-grow text-left');
-    mediaTextContainer.textContent = `${name} (${release}) ${mediaForm}`;
+    let mediaTitleContainer = document.createElement('p');
+    mediaTitleContainer.style.fontWeight = '700'
+    mediaTitleContainer.textContent = `${name} ${mediaForm}`;
 
-    
+    let mediaReleaseDateContainer = document.createElement('p');
+    let reformatDate = moment(release).format('MMM Do yy');
+    mediaReleaseDateContainer.textContent = `${reformatDate}`;
+    mediaReleaseDateContainer.style.fontStyle = 'italic'
 
-    newContainer.append(mediaTypeContainer, mediaTextContainer);
+
+    movieSideContent.append(mediaTitleContainer, mediaReleaseDateContainer);
+
+    newContainer.append(mediaTypeContainer, movieSideContent);
     return newContainer;
     
 }
