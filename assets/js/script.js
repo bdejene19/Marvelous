@@ -67,11 +67,11 @@ const openModal = async (event) => {
 
 
     name = cardDataSet.name;
-    let res = await getFromIMDbApi(name);
-    let trailerId = res.results[0].id;
+    // let res = await getFromIMDbApi(name);
+    // let trailerId = res.results[0].id;
 
-    let trailerSrc = await getVideoTrailerById(trailerId)
-    $('#modal-trailer').attr('src', trailerSrc);
+    // let trailerSrc = await getVideoTrailerById(trailerId)
+    // $('#modal-trailer').attr('src', trailerSrc);
 
     // console.log('name generated from imdb request: ', res);
     movieOverview = cardDataSet.description
@@ -214,21 +214,25 @@ const navigatetoSearch = () => {
     let userSearch = $('nav').children('form').children('input');
     // get value in text box (from user)
     let searchValue = $(userSearch).val();
-    console.log('this is what is being search: ', searchValue)
 
-    // save search to local storage
-    localStorage.setItem(storeKey, searchValue);
+    if (searchValue === '') {
 
-    let pathName = window.location.pathname;
-    if (pathName === '/' || pathName === '/index.html') {
-        window.location = 'assets/pages/searchResults.html';
+        $(userSearch).css('border', 'solid red 3px')
+        setTimeout(() => {
+            $(userSearch).css('border', 'none')
 
+        }, 2000)
     } else {
-        window.location = '../../assets/pages/searchResults.html'
-    }
+        // save search to local storage
+        localStorage.setItem(storeKey, searchValue);
 
-    console.log('current window location path: ', window.location.pathname)
-    // navigate window to results page
-    // let validSearchReponses = await getFromIMDbApi(userSearch);
+        let pathName = window.location.pathname;
+        if (pathName === '/' || pathName === '/index.html') {
+            window.location = 'assets/pages/searchResults.html';
+
+        } else {
+            window.location = '../../assets/pages/searchResults.html'
+        }
+    }
 }
 searchBtn.on('click', navigatetoSearch);
