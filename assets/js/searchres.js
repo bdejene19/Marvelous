@@ -19,6 +19,8 @@ const displaySearchResults = async () => {
     let mediaType = '';
     let posterPath = '';
     let overview = '';
+
+
     results.forEach(mediaItem => {
         console.log('my media item: ', mediaItem);
         movieName = mediaItem.original_title
@@ -31,6 +33,9 @@ const displaySearchResults = async () => {
             resultsContainer.appendChild(generatedItem);
         }
     })
+
+    document.getElementById('search-for').textContent = `${userSearch}`
+
 }
 
 displaySearchResults();

@@ -75,8 +75,8 @@ header h1 {
 }
 
 
-main {
-        padding: 3em 1em;
+#movies_container {
+    padding: 3em 1em;
 
 }
 /* beginning of main content section => showing popular movies etc.  */
