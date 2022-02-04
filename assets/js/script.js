@@ -88,14 +88,16 @@ const openModal = async (event) => {
     // retrieve dataset attributes from card
     let currentCard = cardPlaceHolders[0];
     let cardDataSet = currentCard.dataset;
-
+    console.log('my card placeholder: ', cardPlaceHolders )
 
     // set name from card element data set to fetch from IMDb api
     name = cardDataSet.name;
+    console.log('current name: ', name);
     let res = await getFromIMDbApi(name);
 
     // get trailer id from results
     let trailerId = res.results[0].id;
+    console.log('current trailerID: ', trailerId);
 
     let trailerSrc = await getVideoTrailerById(trailerId)
     // console.log('my trailer source: ', trailerSrc)
