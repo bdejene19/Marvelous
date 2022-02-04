@@ -26,6 +26,7 @@ Cover photo for that movie is presented
 * CSS
 * Tailwind
 * jQuery/jQuery-UI Widgets
+* Moment.js
 * Client-Side Storage (localStorage)
 * Server-Side APIs - IMDB API and TMDB API.
 * Multi-page application
