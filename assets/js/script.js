@@ -1,5 +1,6 @@
-let imdbKey = 'k_1qu3iir5';
+let imdbKey = 'k_d60mvfgr';
 
+// alternate k_1qu3iir5
 let TMDBkey = 'ff34d6186c22970218f2e172d486df84';
 
 // search results for input search
