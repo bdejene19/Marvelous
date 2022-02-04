@@ -1,3 +1,4 @@
+// alternate key k_d60mvfgr
 let imdbKey = 'k_d60mvfgr';
 
 // alternate k_1qu3iir5
@@ -83,13 +84,14 @@ const openModal = async (event) => {
 
   console.log('my current path: ', path) 
 
+    // if (path === '/index.html') {
     if (path.endsWith('/index.html') || path.endsWith('/')) {
     // if (path === '/MarvelousMoviesIndex/' || path === '/MarvelousMoviesIndex/index.html') {
 
  
         cardPlaceHolders = $(event.target).parents('article')
     } else {
-        cardPlaceHolders = $(event.target);
+        cardPlaceHolders = $(event.target).parents('article');
     }
 
     // retrieve dataset attributes from card
