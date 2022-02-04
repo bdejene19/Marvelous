@@ -176,29 +176,31 @@ test();
 
 let searchBtn = $('#search');
 
-const generateSearchResultCol = (name, release, media_type) => {
+const generateSearchResultCol = (name, release, media_type, posterPath) => {
     // row container
     let newContainer = document.createElement('article');
-    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center align-middle text-center');
+    newContainer.setAttribute('class', 'flex flex-row flex-wrap justify-center p-0 align-middle text-center border-2 border-sky-300">');
 
     // media type container 
-    let mediaTypeContainer = $('<p>');
-    $(mediaTypeContainer).attr('class', 'w-24')
-
-    
+    let mediaTypeContainer = document.createElement('img');
+    mediaTypeContainer.setAttribute('src',`https://image.tmdb.org/t/p/w500/${posterPath}`);
+    mediaTypeContainer.setAttribute('alt', name);
+    mediaTypeContainer.setAttribute('class', 'w-24')
+    let mediaForm = '';
     if (media_type === 'tv') {
-        $(mediaTypeContainer).text('📺');
+        mediaForm = '📺'
 
     } else {
-        $(mediaTypeContainer).text('🎬');
+        mediaForm = '🎬';
     }
 
     // movie title and release date container
 
     let mediaTextContainer = document.createElement('p');
     mediaTextContainer.setAttribute('class', 'flex-grow text-left');
-    mediaTextContainer.textContent = `${name} (${release})`;
+    mediaTextContainer.textContent = `${name} (${release}) ${mediaForm}`;
 
+    
 
     newContainer.append(mediaTypeContainer, mediaTextContainer);
     return newContainer;
@@ -210,15 +212,23 @@ const navigatetoSearch = () => {
     // event.preventDefault();
     // target input el
     let userSearch = $('nav').children('form').children('input');
-
     // get value in text box (from user)
     let searchValue = $(userSearch).val();
-    
+    console.log('this is what is being search: ', searchValue)
+
     // save search to local storage
     localStorage.setItem(storeKey, searchValue);
 
+    let pathName = window.location.pathname;
+    if (pathName === '/' || pathName === '/index.html') {
+        window.location = 'assets/pages/searchResults.html';
+
+    } else {
+        window.location = '../../assets/pages/searchResults.html'
+    }
+
+    console.log('current window location path: ', window.location.pathname)
     // navigate window to results page
-    window.location = 'assets/pages/searchResults.html';
     // let validSearchReponses = await getFromIMDbApi(userSearch);
 }
 searchBtn.on('click', navigatetoSearch);
