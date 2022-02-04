@@ -67,18 +67,18 @@ const openModal = async (event) => {
 
 
     name = cardDataSet.name;
-    // let res = await getFromIMDbApi(name);
-    // let trailerId = res.results[0].id;
+    let res = await getFromIMDbApi(name);
+    let trailerId = res.results[0].id;
 
-    // let trailerSrc = await getVideoTrailerById(trailerId)
-    // $('#modal-trailer').attr('src', trailerSrc);
+    let trailerSrc = await getVideoTrailerById(trailerId)
+    $('#modal-trailer').attr('src', trailerSrc);
 
     // console.log('name generated from imdb request: ', res);
     movieOverview = cardDataSet.description
     release_date = cardDataSet.release_date
     $('#modal-name').text(name);
     $('#modal-release').text(`Release: ${release_date}`)
-    $('#modal-overview').text(`Description: \n${movieOverview}`);
+    $('#modal-overview').text(`${movieOverview}`);
 
     $('#modal-content').dialog({
         width: '60vw',        

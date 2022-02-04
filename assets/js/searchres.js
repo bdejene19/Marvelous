@@ -22,7 +22,6 @@ const displaySearchResults = async () => {
 
 
     results.forEach(mediaItem => {
-        console.log('my media item: ', mediaItem);
         movieName = mediaItem.original_title
         releaseDate = mediaItem.release_date;
         mediaType = mediaItem.media_type;
