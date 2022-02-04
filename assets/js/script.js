@@ -49,14 +49,16 @@ const createRowContent = (rowName, contentArray) => {
         releaseDate = movie.release_date;
         movieDescription = movie.overview;
         voteScore = movie.vote_average;
-
-        
         createMovieCard(rowName, movieName, releaseDate, backdrop, voteScore, movieDescription);
    })
    return contentArray;
 }
  
 const openModal = async (event) => {
+    let loadIcon = document.getElementById('loader');
+    loadIcon.style.display = 'block';
+
+
     let name = '';
     let movieLength = 0;
     let movieOverview = '';
@@ -71,6 +73,10 @@ const openModal = async (event) => {
     let trailerId = res.results[0].id;
 
     let trailerSrc = await getVideoTrailerById(trailerId)
+
+    if (trailerSrc) {
+        loadIcon.style.display = 'none';
+    }
     $('#modal-trailer').attr('src', trailerSrc);
 
     // console.log('name generated from imdb request: ', res);

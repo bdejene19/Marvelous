@@ -12,6 +12,8 @@ const displaySearchResults = async () => {
     let userSearch = localStorage.getItem('universal-search-query');
 
     let mySearchRes = await getSearchTMDB(userSearch);
+
+
     let results = mySearchRes.results;
 
     let movieName = '';
