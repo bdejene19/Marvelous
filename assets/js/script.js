@@ -1,4 +1,5 @@
-let imdbKey = 'k_1qu3iir5';
+// alternate key k_d60mvfgr
+let imdbKey = 'k_d60mvfgr';
 
 let TMDBkey = 'ff34d6186c22970218f2e172d486df84';
 
@@ -79,13 +80,12 @@ const openModal = async (event) => {
 
     // check window path to handle card display on different pages (e.g. home vs search results)
     let path = window.location.pathname;
-    console.log('my current path: ', path) 
 
+    // if (path === '/index.html') {
     if (path.endsWith('/index.html') || path.endsWith('/')) {
-    // if (path === '/MarvelousMoviesIndex/' || path === '/MarvelousMoviesIndex/index.html') {
         cardPlaceHolders = $(event.target).parents('article')
     } else {
-        cardPlaceHolders = $(event.target);
+        cardPlaceHolders = $(event.target).parents('article');
     }
 
     // retrieve dataset attributes from card
