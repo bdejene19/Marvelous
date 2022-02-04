@@ -81,8 +81,13 @@ const openModal = async (event) => {
     // check window path to handle card display on different pages (e.g. home vs search results)
     let path = window.location.pathname;
 
+  console.log('my current path: ', path) 
+
     // if (path === '/index.html') {
     if (path.endsWith('/index.html') || path.endsWith('/')) {
+    // if (path === '/MarvelousMoviesIndex/' || path === '/MarvelousMoviesIndex/index.html') {
+
+ 
         cardPlaceHolders = $(event.target).parents('article')
     } else {
         cardPlaceHolders = $(event.target).parents('article');
