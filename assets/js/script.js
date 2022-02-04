@@ -100,8 +100,10 @@ const openModal = async (event) => {
     name = cardDataSet.name;
     console.log('current name: ', name);
     let res = await getFromIMDbApi(name);
-
+    console.log('my api res: ', res);
     // get trailer id from results
+    
+    console.log('res properties: ', res.results);
     let trailerId = res.results[0].id;
     console.log('current trailerID: ', trailerId);
 
