@@ -1,6 +1,7 @@
 // alternate key k_d60mvfgr
 let imdbKey = 'k_d60mvfgr';
 
+// alternate k_1qu3iir5
 let TMDBkey = 'ff34d6186c22970218f2e172d486df84';
 
 // search results for input search
@@ -102,8 +103,10 @@ const openModal = async (event) => {
     name = cardDataSet.name;
     console.log('current name: ', name);
     let res = await getFromIMDbApi(name);
-
+    console.log('my api res: ', res);
     // get trailer id from results
+    
+    console.log('res properties: ', res.results);
     let trailerId = res.results[0].id;
     console.log('current trailerID: ', trailerId);
 
