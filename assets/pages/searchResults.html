@@ -13,6 +13,7 @@
     <!-- link tailwind CSS to our HTML -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"/>
 
+    <!-- link custom styles -->
     <link href='../css/searchpagestyles.css' rel='stylesheet'/>
     <link href='../css/style.css' rel='stylesheet'/>
 
@@ -21,6 +22,9 @@
      rel="stylesheet"
      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
    />   
+
+   <!-- link momentjs -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.1/moment.min.js"></script>
 </head>
     
 <body class="">
@@ -55,8 +59,24 @@
             </div>
         </section>
 
+        <div class='loader' id='loader'></div>
+
         <!-- where the api search results would go -->
         <section id='searchResults'></section>
+
+        <section id='modal-content'>
+            <!-- genre, length, release date, etc -->
+           <iframe src='' autoplay controls id='modal-trailer'></iframe>
+           <article>
+             <p id='modal-genre'></p>
+             <p id='modal-release'></p>
+             <p id='modal-length'></p>
+           </article>
+   
+           <h3 id='modal-name'></h3>
+           <p id='modal-overview'></p> 
+        </section>
+
     </main>  
 
     <!-- add jquery library-->
