@@ -22,22 +22,27 @@
   <!-- link jquery to root -->
   <div class="" id="root"></div>
 
+  <!-- navbar -->
   <header class="bg-blue-200 p-3 fles align">
+    
     <nav class="align-text-bottom">
+      <!-- link to go home -->
       <a href='index.html'>
         <h1 >Uni<span class="highlight">VER</span>sal Movies 🎬</h1>
       </a>
+
       <form>
         <input type="text" class="form-control" placeholder="Search..." />
         <button type="button" class="btn" id="search">Search for movie</button>
       </form>
-  
     </nav>
   </header>
+
   <main id="movies_container">
       <!-- List of popular tv shows and movies -->
       <h2>Popular</h2>
       <section class='home-display'>
+        <!-- area to display popular fetched data -->
         <article class='display-row' id='popular'>
         </article>
       </section>
@@ -48,13 +53,14 @@
         <article class="display-row" id='top-rated'>
         </article>
       </section>
-      
+
+      <div class='loader' id='loader'></div>
+
    
       <section id='modal-content'>
          <!-- genre, length, release date, etc -->
         <iframe src='' autoplay controls id='modal-trailer'></iframe>
         <article>
-          <p id='modal-genre'></p>
           <p id='modal-genre'></p>
           <p id='modal-release'></p>
           <p id='modal-length'></p>
@@ -72,7 +78,7 @@
      <span class="fa fa-star checked"></span>
      <span class="fa fa-star checked"></span>
      <span class="fa fa-star checked"></span>
-     <span class="fa fa-star "></span>
+     <span class="fa fa-star checked"></span>
  </footer>
 
    <!-- add jquery library-->

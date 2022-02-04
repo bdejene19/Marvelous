@@ -12,6 +12,8 @@ const displaySearchResults = async () => {
     let userSearch = localStorage.getItem('universal-search-query');
 
     let mySearchRes = await getSearchTMDB(userSearch);
+
+
     let results = mySearchRes.results;
 
     let movieName = '';
@@ -22,7 +24,6 @@ const displaySearchResults = async () => {
 
 
     results.forEach(mediaItem => {
-        console.log('my media item: ', mediaItem);
         movieName = mediaItem.original_title
         releaseDate = mediaItem.release_date;
         mediaType = mediaItem.media_type;
